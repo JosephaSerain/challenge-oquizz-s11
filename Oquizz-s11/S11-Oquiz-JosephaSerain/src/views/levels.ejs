@@ -1,0 +1,43 @@
+<%- include("partials/header") %>
+
+<main class="container py-4">
+
+  <!-- Toast en cas d'erreur -->
+  <!-- <div class="alert alert-danger" role="alert">
+    Une erreur s'est produite lors de l'enregistrement du niveau.
+  </div> -->
+
+  <!-- Toast en cas de succès -->
+  <!-- <div class="alert alert-success" role="alert">
+    Le niveau a été enregistré avec succès.
+  </div> -->
+
+  <h1 class="my-3">Tous les niveaux</h1>
+
+  <ul>
+
+    <!-- Level -->
+     <% levels.forEach(level => { %>
+        <li>
+            <span class="badge bg-info p-3"><%= level.name %></span>
+            <a class="btn btn-outline-info py-0 px-1 ms-3 fs-6 text-decoration-none" href="#">ÉDITER</a>
+            <!-- Seules les 'method' GET & POST sont autorisées dans les FORM html. Du coup on ruse, même si les endpoints résultants ne sont pas très REST friendly -->
+            <form class="d-inline" action="/levels/<%= level.id %>/delete" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce niveau ?');">
+              <input class="btn btn-outline-danger py-0 px-1 ms-3 fs-6" type="submit" value="SUPPRIMER">
+            </form>
+          </li>
+      
+     <% }) %>
+
+     <form action="/levels" method="POST">
+        <label class="form-label h4" for="name">Ajouter un niveau</label>
+        <input class="form-control mb-4" type="name" id="name" name="name" placeholder="Nom du niveau">
+
+        <input class="btn btn-primary d-block my-4 mx-auto" type="submit" value="Ajouter">
+    </form>
+    
+
+    
+</main>
+
+<%- include("partials/footer") %>

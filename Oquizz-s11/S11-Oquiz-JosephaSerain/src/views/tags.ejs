@@ -1,0 +1,30 @@
+<%- include("partials/header") %>
+
+    <main class="container py-4">
+
+        <h1>Thèmes</h1>
+
+        <div>
+
+            <% for (const tag of tags) { %>
+                <span class="badge bg-primary p-2 mb-1"><%= tag.name %></span>
+
+                <!-- Si on a des quizz dans le tag, laors <ul>, sinon <p> -->
+                <% if (tag.quizzes.length > 0) { %>
+                    <ul>
+                        <% for (const quiz of tag.quizzes) { %>
+                            <li>
+                                <a href="/quiz/<%= quiz.id %>"><%= quiz.title %></a>
+                            </li>
+                        <% } %>
+                    </ul>
+                <% } else { %>
+                    <p class="ms-2">Aucun quizz dans cette catégorie pour le moment....</p>
+                <% } %>
+            <% } %>
+
+        </div>
+
+    </main>
+
+<%- include("partials/footer") %>
